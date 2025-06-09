@@ -30,3 +30,5 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+monitor-long-term/monitor-long-term
+monitor-long-term/monitor-long-term.log

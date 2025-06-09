@@ -73,11 +73,20 @@ func (j *job) Run() {
 	if diff > 1 {
 		log.Printf("this task no equal, diff: %d %d %d\n", now, j.expirationMs, diff)
 	}
-	if diff > 100 {
+	switch {
+	case diff > 16000:
+		logger.OnError().
+			Int64("now", now).
+			Int64("expirationAt", j.expirationMs).
+			Int64("diff", diff).
+			Msg("this task large diff")
+	case diff > 100:
 		logger.OnWarn().
 			Int64("now", now).
 			Int64("expirationAt", j.expirationMs).
 			Int64("diff", diff).
 			Msg("this task large diff")
+
 	}
+
 }
